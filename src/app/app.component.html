@@ -1,26 +1,21 @@
-<div *ngIf="error" class="alert alert-danger">{{error}}</div>
-<div *ngIf="success" class="alert alert-success">{{success}}</div>
-  <body>
-    <div id="page-wrap">
-      <div id="main">
-        <ul  id="list" class="ui-sortable">
-          <div cdkDropList (cdkDropListDropped)="drop($event)">
-            <li *ngFor="let h of heros let i = index"  color="1" class="{{h.color}}" rel="" id="{{h.id}}"  class="class1 class2" [ngClass]="{'makeline':checkStatus(h)}" cdkDrag>
-                <input (keydown.enter) = "updatetext(h,$event)" name="text" class="spandetector"  title="Double-click to edit..." style="opacity: 1;" value="{{h.text}}">
-              <div class="draggertab tab" rel="{{h.id}}" ></div>
-              <div (click) = "UpdateColor(h,$event)" class="colortab tab"></div>
-              <div (click) = "delete(h,i)" class="deletetab tab" style="width: 44px; display: block; right: -64px;">
-              </div>
-              <div (click) = "marked(h)" class="donetab tab"></div>
-            </li>
-          </div>
-        </ul>
-        <br />
-        <form #form="ngForm" id="add-new">
-          <input type="text" name="text" id="new-list-item-text"  [(ngModel)]="hero.text" required/>
-          <a (click)="addtodo(form)" value="Add" class="button" >Add</a>
-        </form>
-        <div class="clear"></div>
+<div id="page-wrap">
+  <div id="main">
+    <ul  id="list" class="ui-sortable">
+      <div class="example-list" cdkDropList (cdkDropListDropped)="drop($event)">
+        <li *ngFor="let h of heros let i = index"  color="1" class="{{h.color}} example-box" rel="" id="{{h.id}}"  class="class1 class2" [ngClass]="{'makeline':checkStatus(h)}" cdkDrag>
+          <input (click)="checkclass()" [ngClass]="{'input-bordermaker' : status}"   (keydown.enter) = "updatetext(h,$event)" name="text" class="spandetector tooltip"  title="Press Enter To Update Text" style="opacity: 1;" value="{{h.text}}">
+          <div class="draggertab tab" rel="{{h.id}}" ></div>
+          <div (click) = "UpdateColor(h,$event)" class="colortab tab"></div>
+          <div (dblclick) = "delete(h,i)" class="deletetab tab " ></div>
+          <div (click) = "marked(h)" class="donetab tab"></div>
+        </li>
       </div>
-    </div>
-  </body>
+    </ul>
+    <br />
+    <form #form="ngForm" id="add-new">
+      <input type="text" name="text" id="new-list-item-text"  [(ngModel)]="hero.text" required/>
+      <a (click)="addtodo(form)" value="Add" class="button" >Add</a>
+    </form>
+    <div class="clear"></div>
+  </div>
+</div> 

@@ -41,19 +41,19 @@ export class AppComponent implements OnInit {
 
   }
   updatetext(obj,text){
+    
     var text = text.target.value;
     obj.text = text;
     this.service.updatetextinput(obj).subscribe(
       (res: Hero[]) => {
-        this.heros = res;
-        obj.reset();
+       
       },
       (err) => this.error = err
     );
 
   }
   delete(obj,index){
-    if (confirm('Are you sure ?')) {
+    
       var id = obj.id;
       this.service.deleterow(id).subscribe(
         (res: Hero[]) => {
@@ -61,10 +61,12 @@ export class AppComponent implements OnInit {
         },
         (err) => this.error = err
       );
-    }
   }
   checkStatus(obj){
     return Number(obj.status) == 1
+  }
+  checkclass(){
+    return Number(status) == 1
   }
   marked(obj){
     let id = obj.id;
@@ -91,8 +93,8 @@ export class AppComponent implements OnInit {
   }
   addtodo(f) {
     this.service.store(this.hero).subscribe(
-        (res: Hero[]) => {
-         this.heros = res;
+        (res: any) => {
+         this.heros.push(res);
          f.reset();
         },
         (err) => this.error = err
@@ -106,10 +108,9 @@ export class AppComponent implements OnInit {
     });
     this.service.sort(list).subscribe(
       (res: Hero[]) => {
-        this.heros = null;
+       
       },
         (err) => this.error = err
       );
     }
 }
-

@@ -18,11 +18,10 @@ export class HeroService {
                 return this.hero;
             }));
     }
-    store(hero: Hero): Observable<Hero[]> {
+    store(hero: Hero): Observable<any> {
       return this.http.post(this.baseUrl+'/insert', { data: hero })
-        .pipe(map((res) => {
-          this.hero.push(res['data']);
-          return this.hero;
+        .pipe(map((res: any) => {
+          return res.data;
       }));
   }
     updatecolor(hero: Hero): Observable<Hero[]> {
@@ -46,7 +45,7 @@ export class HeroService {
           return this.hero;
       }));
     }
-    updatetextinput(hero: Hero): Observable<Hero[]> {
+    updatetextinput(hero: Hero): Observable<Hero[]>{
       return this.http.post(this.baseUrl+'/updatetext', { data: hero })
         .pipe(map((res) => {
           this.hero = res['data'];
